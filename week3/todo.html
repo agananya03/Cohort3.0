@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo lisT</h1>
+    <div id="todos">
+        <div id="todo-1">
+            <h4>1. take class</h4>
+            <button onclick ="deletetodo(1)">delete</button>
+        </div>
+        <div id="todo-2">
+            <h4> 2. Go out to eat</h4>
+            <button onclick="deletetodo(2)">delete</button>
+        </div>
+    </div>
+    <div>
+        <input  id ="inp" type="text"></input>
+        <button onclick="addtodo()">add todo</button>
+    </div>
+</body>
+<script>
+  //  let currindex=3;
+    function addtodo(){
+        // const inpute=document.getElementById("inp");
+        // const textnode=document.createElement("div");
+        // textnode.innerHTML="<div id= 'todo-" + currindex +"'><h4>" +inpute+ "</h4></div>"
+        // const parentel=document.getElementById("todos");
+        // parentel.appendchild(textnode);
+        // currindex=currindex+1;
+        const value=document.querySelector("input").value;
+        const spanel=document.createElement("span");
+        const buttonel=document.createElement("button");
+        spanel.innerHTML=value;
+        buttonel.innerHTML="delete";
+        const divel=document.createElement("div");
+        divel.appendChild(spanel);
+        divel.appendChild(buttonel);
+        document.querySelector("body").appendChild(divel);
+    }
+    function deletetodo(index){
+        const element=document.getElementById("todo-"+index);
+        element.parentNode.removeChild(element)
+    }
+</script>
+</html>

@@ -24,3 +24,4 @@ map.set('name','Ananya')
 map.set('age',19)
 console.log(map.get('name'))
 
+setTimeout(logname,3000) //calls the function logname after 3 sec
