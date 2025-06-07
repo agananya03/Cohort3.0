@@ -23,7 +23,7 @@ app.post('/user' , function(req,res){
 app.get('/requestcount', function(req,res){
     res.status(200).json({
         requestcount
-    })
+    });
 });
 
 app.listen(3000);

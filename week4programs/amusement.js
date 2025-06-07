@@ -11,6 +11,17 @@ function oldenough(age){
     }
 }
 
+// vis middleware
+function oldenoughmiddleware(req,res,next){
+    if(age>=14){
+        next();
+    }
+    else{
+        res.json({
+            msg: "not required age"
+        })
+    }
+}
 app.get('/ride1',function(req,res){
     if(oldenough(req.query.age)){
         res.json({
