@@ -1,0 +1,53 @@
+const express=require('express');
+const app=express();
+
+app.use(express.json());
+const users=[];
+
+function generatetoken(){
+    //generate a random token for user after every sign in
+}
+
+app.post('/signup',function(req,res){
+const username=req.body.username;
+const password=req.body.password;
+ 
+users.push({
+    username: username,
+    password: password
+})
+
+res.json({
+    message: " you are signed in"
+})
+
+})
+
+app.post('/signin',function(req,res){
+const username=req.body.username;
+const password=req.body.password;
+
+let founduser=null;
+for(let i=0;i<users.length;i++){
+if(users[i].username==username && users[i].password==password){
+    founduser=users[i];
+}
+}
+if(founduser){
+    const token=generatetoken();
+    founduser.token=token;
+    res.json({
+        message: token
+    })
+}else{
+    res.status(403).send({
+        message:" invalid username or password"
+    })
+}
+// const user=users.find(function(u){
+// if(u.username==username) return true;
+// else return false;
+// })
+ })
+
+app.listen(3000);
