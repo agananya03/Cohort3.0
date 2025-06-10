@@ -28,6 +28,17 @@
          localStorage.setItem("token",response.data.token);
          alert("you are signed in");
     }
+    async function getuserinformation() {
+       const response= await axios.get("http://localhost:3000/me",{
+            headers: {
+                token: localStorage.getItem("token")
+            }
+        })
+        document.getElementById("ux").innerHTML="username: " + response.data.username + "Password: " + response.data.password
+    }
+    function logout(){
+        localStorage.removeItem("token");
+    }
 </script>
 <body>
     <div>
