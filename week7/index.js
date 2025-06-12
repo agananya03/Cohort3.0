@@ -3,25 +3,50 @@ const express = require('express');
 const { UserModel, TodoModel } = require('./db');
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
-
+const {z} =require("zod");
 const app = express();
 const JWT_SECRET = "ananya30";
 
 app.use(express.json());
-mongoose.connect("mongodb+srv://ananya03:ananya03@cluster0.gpuf17o.mongodb.net/todo-app-database")
+mongoose.connect("");
   
 app.post('/signup', async function(req, res) {
+    const requiredbody=z.object({
+        email: z.string().min(3).max(100).email(),
+        name: z.string().min(3).max(55),
+        password: z.string().min(5).max(25)
+    })
+    ///const parseddata=requiredbody.parse(req.body);
+    const parseddatawithsuccess=requiredbody.safeParse(req.body);
+    if(!parseddatawithsuccess.success){
+        res.json({
+            message: "incorrect format of data entered",
+            error: parseddatawithsuccess.error
+        })
+        return 
+    }
+
+
   const { email, password, name } = req.body;
+  let errorthrown=false;
+  try{
     const hashpassword= await bcrypt.hash(password , 5)
     console.log(hashpassword);
   await UserModel.create({ 
     email: email,
     password: hashpassword, 
-    name: name });
-
-  res.json({ message: "You are signed up" });
+    name: name 
+    });
+  } catch(e){
+    res.json({
+        message: "user already exists"
+    })
+    errorthrown=true;
+  }
+  if(!errorthrown){
+    res.json({ message: "You are signed up" });
+}
 });
-
 app.post('/signin', async function(req, res) {
   const { email, password } = req.body;
 
