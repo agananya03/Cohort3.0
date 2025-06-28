@@ -12,7 +12,7 @@ export function useFetch(url) {
 
     useEffect(() => {
         getdetails();
-    }, [])
+    }, [url]) //any time the url changes run this useffect
 
     return (
         finaldata

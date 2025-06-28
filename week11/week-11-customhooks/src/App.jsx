@@ -5,7 +5,7 @@ import {usePrev} from "./hooks/usePrev";
 
 
 function App() {
-  // const { finaldata } = useFetch("https://www.google.com/");
+  // const { finaldata } = useFetch("url");
   // return (
   //     <div>
   //      {JSON.stringify(finaldata)}
@@ -22,7 +22,8 @@ function App() {
     <p>{state}</p>
     <button onClick={() => {
       setstate((curr) => curr + 1)
-    }}>Click ME
+    }}>
+      Click ME
     </button>
     <p>The prev value was {prev}</p>
     </>
