@@ -49,7 +49,7 @@ function Sidebar({sidebarOpen, setSidebarOpen}) {
         <div className='cursor-pointer hover:bg-slate-200' onClick={() => {
           setSidebarOpen(!sidebarOpen)
         }}>
-          <SidebarToggle />
+          <SidebarToggle/>
         </div>
     </div>
   }
