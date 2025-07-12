@@ -32,3 +32,14 @@ export const messageatom = atom({
     key: "messageatom",
     default: 0
 })
+
+export const totalNotificationSelector = selector({
+    key: "totalNotificationSelector",
+    value: ({get}) => {
+        const networkatomCount = get(networkatom);
+        const jobskatomCount = get(jobskatom);
+        const notificationsatomCount = get(notificationsatom);
+        const messageatomCount = get(messageatom)
+        return networkatomCount + jobskatomCount + notificationsatomCount + messageatomCount
+    } 
+})

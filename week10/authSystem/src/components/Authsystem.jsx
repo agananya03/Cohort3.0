@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import Home from "./Home"
+import Home from "./home"
 import AppBar from './AppBar';
 import Login from './Login';
 
