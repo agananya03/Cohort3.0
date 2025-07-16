@@ -12,7 +12,16 @@ function updateUser(updatedProps: updatePropsOptional) {
 //hit the database to update the user
 }
 
-//readonly
+//readonly => you are not allowed to change internal value
 type user1 = {
-    name: string
+     readonly name: string
 }
+//records => ts concept
+type Users = Record<string, {age: number, name: string}>;
+const users: Users = {
+    "asbc": {age: 23, name: "ananya"},
+    "bcds": {age: 21, name: "nana"}
+}
+
+//map=> js concept
+// users.set = {key, {key-value}}  
