@@ -10,16 +10,23 @@ const wss = new WebSocketServer({port: 8080});
 //     })
 // })
 let userCount = 0;
-let allSockets: WebSocket[] = [];
+interface User {
+    socket: WebSocket;
+    room: string;
+}
+let allSockets: User[] = [];
 wss.on("connection", function(socket){
-    allSockets.push(socket);
-    userCount = userCount + 1;
+    // allSockets.push(socket);
+    // userCount = userCount + 1;
 
     socket.on("message", (message)=> {
-        for(let i = 0; i < allSockets.length; i++) {
-            const s = allSockets[i];
-            s.send(message.toString() + ": sent from the server");
-        }
+        //normal chat 
+        // for(let i = 0; i < allSockets.length; i++) {
+        //     const s = allSockets[i];
+        //     s.send(message.toString() + ": sent from the server");
+        // }
+
+        
     })
     socket.on("disconnect", ()=>{
         allSockets = allSockets.filter(x => x != socket)
