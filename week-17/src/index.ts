@@ -5,7 +5,7 @@ import { Client } from "pg";
 const app = express();
 app.use(express.json());
 
-const pgClient = new Client("//url")
+const pgClient = new Client("//url");
 
 pgClient.connect();
 
@@ -31,6 +31,6 @@ app.post("/signup", async (req, res) => {
         })
     }
 
-})
+});
 
 app.listen(3000)
