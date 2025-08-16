@@ -26,9 +26,17 @@ wss.on("connection", function(socket){
         //     s.send(message.toString() + ": sent from the server");
         // }
 
-        
+        // @ts-ignore
+        const parsedMessage = JSON.parse(message);
+        if(parsedMessage.type === "join") {
+            allSockets.push({
+                socket,
+                room: parsedMessage.payload.roomId
+            })
+        }
+
     })
     socket.on("disconnect", ()=>{
-        allSockets = allSockets.filter(x => x != socket)
+        // allSockets = allSockets.filter(x => x != socket)
     })
 })
